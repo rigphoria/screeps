@@ -1,3 +1,7 @@
-module.exports = {
+var systemSpawn = {
+  run: function(){
+    
+  }
+}
 
-};
+module.exports = systemSpawn;
