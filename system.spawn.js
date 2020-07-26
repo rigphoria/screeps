@@ -4,7 +4,7 @@ var systemSpawn = {
   var maxBuilders = 2;
 
   run: function(){
-    
+
   }
 }
 

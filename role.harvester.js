@@ -8,7 +8,7 @@ var roleHarvester = {
           creep.moveTo(sources[0]);
         }
       }
-      
+
       if(creep.store.getFreeCapacity() == 0){
         creep.memory.isHarvesting = false;
       }
