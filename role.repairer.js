@@ -1,20 +1,13 @@
 var roleRepairer = {
   run: function(creep){
     if(creep.memory.isRepairing){
-      // var targets = creep.room.find(FIND_STRUCTURES, {
-      //     filter: (structure) => { structure.structureType == STRUCTURE_ROAD &&
-      //             structure.hits / structure.hitsMax <= 0.9;
-      //         }
-      //     });
-
-      var targets = creep.room.find(FIND_STRUCTURES, {
-        filter: (i) => { i.structureType != STRUCTURE_WALL &&
-                        i.hits < i.hitsMax;/// i.hitsMax <= 0.9;
-                      }
-                    });
+      var targets = creep.room.find(FIND_STRUCTURES, {filter: (structure) => {return (
+                                    structure.structureType == STRUCTURE_ROAD ||
+                                    structure.structureType == STRUCTURE_CONTAINER &&
+                                    structure.hits / structure.hitsMax < 0.4)}});
 
       if(targets.length > 0){
-        console.log("what");
+        console.log(creep.repair(targets[0], creep.store.getCapacity(RESOURCE_ENERGY)));
         if(creep.repair(targets[0], creep.store.getCapacity(RESOURCE_ENERGY)) == ERR_NOT_IN_RANGE){
           creep.moveTo(targets[0]);
         }

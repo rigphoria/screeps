@@ -15,11 +15,11 @@ var roleBuilder = {
       var targets = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_CONTAINER &&
-                        structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
+                        structure.store[RESOURCE_ENERGY] > 100);
                 }
             });
       if(targets.length > 0){
-        if(creep.withdraw(targets[0],RESOURCE_ENERGY, 
+        if(creep.withdraw(targets[0],RESOURCE_ENERGY,
           creep.store.getCapacity(RESOURCE_ENERGY) - creep.store.getFreeCapacity()) == ERR_NOT_IN_RANGE){
         creep.moveTo(targets[0]);
         }

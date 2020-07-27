@@ -16,9 +16,9 @@ module.exports.loop = function ()
     }
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == "builder");
     for(var i = 0; i < builders.length; i++){
-      roleBuilder.run(builders[i]);
+      roleRepairer.run(builders[i]);
     }
-    var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == "repairers");
+    var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == "repairer");
     for(var i = 0; i < repairers.length; i++){
       roleRepairer.run(repairers[i]);
     }
@@ -33,13 +33,13 @@ module.exports.loop = function ()
     } else if(upgraders.length < 3){
       Game.spawns["Spawn1"].spawnCreep( [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE],
         'Upgrader' + harvesters[0].ticksToLive, {memory: {'role' : "upgrader", "isUpgrading" : false}});
-    } else if(builders.length < 2){
+    } else if(builders.length < 3){
       Game.spawns["Spawn1"].spawnCreep( [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE],
         'Builder' + harvesters[0].ticksToLive, {memory: {'role' : "builder", "isBuilding" : false}});
     } else if(repairers.length < 3){
       Game.spawns["Spawn1"].spawnCreep( [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE],
         'Repairer' + harvesters[0].ticksToLive, {memory: {'role' : "repairer", "isRepairing" : false}});
-    } else if(fillers.length < 3){
+    } else if(fillers.length < 2){
       Game.spawns["Spawn1"].spawnCreep( [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE],
         'Filler' + harvesters[0].ticksToLive, {memory: {'role' : "filler", "isFilling" : false}});
     }
